@@ -12,6 +12,7 @@
     />
     <meta property="og:title" content="Vicaris Advisory 2026" />
     <meta property="og:description" content="Structure first, scale later." />
+    <link rel="icon" type="image/png" href="assets/favicon.png" />
     <link rel="stylesheet" href="dist/tailwind.css" />
     <style>
       body {
@@ -453,9 +454,513 @@
           transition: none !important;
         }
       }
+
+      /* ===== Hero typing ===== */
+      .tw {
+        opacity: 0;
+      }
+      .tw.on {
+        opacity: 1;
+      }
+      .tw-caret {
+        display: inline-block;
+        width: 0;
+        position: relative;
+      }
+      .tw-caret::after {
+        content: "";
+        position: absolute;
+        left: 0.03em;
+        bottom: 0.06em;
+        width: 0.05em;
+        height: 0.78em;
+        background: #c9a45c;
+        animation: twblink 1s steps(1) infinite;
+      }
+      .tw-caret.out::after {
+        animation: none;
+        opacity: 0;
+        transition: opacity 0.6s;
+      }
+      @keyframes twblink {
+        50% {
+          opacity: 0;
+        }
+      }
+      .gold-text.shine {
+        background-size: 220% 100%;
+        background-position: 100% 0;
+      }
+      .gold-text.shine.go {
+        animation: twshine 1.8s ease-out 1;
+      }
+      @keyframes twshine {
+        from {
+          background-position: 0% 0;
+        }
+        to {
+          background-position: 100% 0;
+        }
+      }
+
+      /* ===== Logo signature ===== */
+      .vx-logo-nav {
+        display: block;
+        height: 50px;
+        width: auto;
+      }
+      .vx-sig {
+        clip-path: inset(0 100% 0 0);
+        animation: vxsig 2.4s cubic-bezier(0.65, 0, 0.25, 1) 0.3s forwards;
+      }
+      .vx-sig.late {
+        animation: none;
+      }
+      .vx-sig.late.vis {
+        animation: vxsig 2.6s cubic-bezier(0.65, 0, 0.25, 1) forwards;
+      }
+      @keyframes vxsig {
+        to {
+          clip-path: inset(0 0 0 0);
+        }
+      }
+
+      /* ===== Progress bar ===== */
+      #vxProg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 2px;
+        width: 100%;
+        transform-origin: 0 50%;
+        transform: scaleX(0);
+        background: linear-gradient(90deg, #b8903f, #e3cb94);
+        z-index: 60;
+        pointer-events: none;
+      }
+
+      /* ===== Reveal on scroll ===== */
+      .rv {
+        opacity: 0;
+        transform: translateY(28px);
+        transition:
+          opacity 0.9s ease var(--d, 0s),
+          transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) var(--d, 0s),
+          background-color 0.3s ease 0s,
+          border-color 0.3s ease 0s,
+          box-shadow 0.3s ease 0s;
+      }
+      .rv.vis {
+        opacity: 1;
+        transform: none;
+      }
+      main h2.rv::after {
+        content: "";
+        display: block;
+        height: 2px;
+        width: 0;
+        margin-top: 1.4rem;
+        background: linear-gradient(90deg, #c9a45c, transparent);
+        transition: width 1.3s cubic-bezier(0.2, 0.7, 0.2, 1) 0.35s;
+      }
+      main h2.rv.vis::after {
+        width: min(180px, 40%);
+      }
+      #contact h2.rv::after,
+      #portfolio h2.rv::after {
+        background: linear-gradient(90deg, #14110c, transparent);
+      }
+
+      /* ===== Hero art ===== */
+      .vx-orb {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(70px);
+        pointer-events: none;
+        opacity: 0.5;
+        will-change: transform;
+      }
+      .vx-orb.a {
+        width: 46vw;
+        height: 46vw;
+        max-width: 620px;
+        max-height: 620px;
+        left: -12vw;
+        top: 4vh;
+        background: radial-gradient(
+          circle,
+          rgba(201, 164, 92, 0.35),
+          transparent 65%
+        );
+        animation: vxfloat 18s ease-in-out infinite alternate;
+      }
+      .vx-orb.b {
+        width: 34vw;
+        height: 34vw;
+        max-width: 480px;
+        max-height: 480px;
+        right: 6vw;
+        bottom: -8vh;
+        background: radial-gradient(
+          circle,
+          rgba(227, 203, 148, 0.22),
+          transparent 65%
+        );
+        animation: vxfloat 22s ease-in-out -6s infinite alternate-reverse;
+      }
+      @keyframes vxfloat {
+        to {
+          transform: translate3d(6vw, -5vh, 0) scale(1.15);
+        }
+      }
+      .vx-art {
+        position: absolute;
+        right: -14vw;
+        top: 50%;
+        width: min(86vw, 780px);
+        height: auto;
+        transform: translateY(-55%);
+        opacity: 0.75;
+        pointer-events: none;
+      }
+      .vx-art .rot {
+        transform-origin: 300px 300px;
+        animation: vxspin 90s linear infinite;
+      }
+      .vx-art .rot2 {
+        transform-origin: 300px 300px;
+        animation: vxspin 140s linear infinite reverse;
+      }
+      .vx-art .dr {
+        fill: none;
+        stroke: #c9a45c;
+        stroke-width: 1;
+        stroke-opacity: 0.55;
+        stroke-dasharray: 1;
+        stroke-dashoffset: 1;
+        animation: vxdraw 3.6s cubic-bezier(0.4, 0, 0.2, 1) 0.4s forwards;
+      }
+      .vx-art .dot {
+        fill: #e3cb94;
+        opacity: 0;
+        animation: vxdot 1s ease 3s forwards;
+      }
+      @keyframes vxdraw {
+        to {
+          stroke-dashoffset: 0;
+        }
+      }
+      @keyframes vxdot {
+        to {
+          opacity: 1;
+        }
+      }
+      @keyframes vxspin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* ===== Marquee ===== */
+      .vx-marq {
+        overflow: hidden;
+        border-block: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 1.3rem 0;
+      }
+      .vx-marq-track {
+        display: flex;
+        align-items: center;
+        width: max-content;
+        animation: vxmarq 40s linear infinite;
+      }
+      .vx-marq:hover .vx-marq-track {
+        animation-play-state: paused;
+      }
+      .vx-marq span {
+        font-size: clamp(2rem, 5vw, 4rem);
+        font-weight: 700;
+        letter-spacing: -0.03em;
+        white-space: nowrap;
+        padding: 0 1.3rem;
+        color: transparent;
+        -webkit-text-stroke: 1px rgba(201, 164, 92, 0.6);
+      }
+      .vx-marq span.f {
+        color: #c9a45c;
+        -webkit-text-stroke: 0;
+      }
+      .vx-marq i {
+        font-style: normal;
+        color: #c9a45c;
+        font-size: 1.6rem;
+        display: inline-block;
+        animation: vxspin 8s linear infinite;
+      }
+      @keyframes vxmarq {
+        to {
+          transform: translateX(-50%);
+        }
+      }
+
+      /* ===== Icons ===== */
+      .vx-ic {
+        width: 1.5rem;
+        height: 1.5rem;
+        display: block;
+      }
+      [data-ic] {
+        display: inline-flex;
+      }
+      .vx-ibub {
+        display: inline-grid;
+        place-items: center;
+        flex: none;
+        width: 3rem;
+        height: 3rem;
+        border-radius: 1rem;
+        color: #c9a45c;
+        background: radial-gradient(
+          circle at 30% 20%,
+          rgba(201, 164, 92, 0.28),
+          rgba(201, 164, 92, 0.06)
+        );
+        border: 1px solid rgba(201, 164, 92, 0.35);
+        transition:
+          transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1),
+          background 0.3s,
+          color 0.3s;
+      }
+      .vx-ibub.sm {
+        width: 2.5rem;
+        height: 2.5rem;
+        border-radius: 0.8rem;
+      }
+      .vx-ibub .vx-ic {
+        width: 1.35rem;
+        height: 1.35rem;
+      }
+      .vx-pos:hover .vx-ibub,
+      .vx-eng:hover .vx-ibub,
+      .vx-step:hover .vx-ibub,
+      summary:hover .vx-ibub {
+        transform: translateY(-3px) rotate(-8deg) scale(1.08);
+        background: #c9a45c;
+        color: #111;
+      }
+      .vx-pos {
+        position: relative;
+        overflow: hidden;
+      }
+      .vx-pos::after {
+        content: "";
+        position: absolute;
+        right: -25%;
+        bottom: -55%;
+        width: 70%;
+        aspect-ratio: 1;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(201, 164, 92, 0.2),
+          transparent 70%
+        );
+        transition: transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1);
+        pointer-events: none;
+      }
+      .vx-pos:hover::after {
+        transform: translate(-18%, -22%) scale(1.35);
+      }
+      .vx-pos h3,
+      .vx-eng h3 {
+        margin-top: 1.4rem;
+      }
+      .vx-eng {
+        position: relative;
+      }
+      .vx-eng:hover {
+        border-color: #c9a45c;
+        box-shadow: 0 22px 44px -26px rgba(201, 164, 92, 0.6);
+      }
+      .vx-sthead {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .vx-sumt {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      /* ===== Portfolio maps links ===== */
+      .vx-ml {
+        text-decoration: underline;
+        text-decoration-color: rgba(20, 17, 12, 0.3);
+        text-underline-offset: 4px;
+        transition:
+          color 0.2s,
+          text-decoration-color 0.2s;
+      }
+      .vx-ml:hover {
+        color: #8a6a25;
+        text-decoration-color: #8a6a25;
+      }
+      .vx-gm {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.3rem;
+        margin-left: 0.4rem;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: #8a6a25;
+        white-space: nowrap;
+      }
+      .vx-gm:hover {
+        text-decoration: underline;
+      }
+      .vx-ahg-row a {
+        display: block;
+        color: inherit;
+        text-decoration: none;
+      }
+
+      /* ===== Client card = link ===== */
+      .vx-card {
+        display: block;
+        color: inherit;
+        text-decoration: none;
+      }
+      .vx-loc {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        margin-top: 1rem;
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: #c9a45c;
+      }
+      .vx-loc .vx-ic {
+        width: 1rem;
+        height: 1rem;
+        transition: transform 0.3s;
+      }
+      .vx-card:hover .vx-loc .vx-ic {
+        transform: translateY(-3px);
+      }
+
+      /* ===== Socials + footer ===== */
+      .vx-socials {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.6rem;
+      }
+      .vx-socials .vx-pill {
+        margin-top: 0.75rem;
+      }
+      .vx-pill .vx-ic {
+        width: 1.15rem;
+        height: 1.15rem;
+      }
+      .vx-foot {
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 4rem 1.25rem 2.25rem;
+      }
+      .vx-foot-in {
+        max-width: 80rem;
+        margin: 0 auto;
+        display: grid;
+        gap: 2rem;
+      }
+      @media (min-width: 768px) {
+        .vx-foot-in {
+          grid-template-columns: 1fr auto;
+          align-items: end;
+        }
+        .vx-foot {
+          padding-inline: 2rem;
+        }
+      }
+      .vx-foot-logo {
+        display: block;
+        width: min(280px, 72vw);
+        height: auto;
+      }
+      .vx-foot-tag {
+        margin-top: 0.8rem;
+        font-size: 0.95rem;
+        color: #c9a45c;
+      }
+      .vx-soc-ic {
+        display: flex;
+        gap: 0.6rem;
+      }
+      .vx-soc-ic a {
+        width: 46px;
+        height: 46px;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.22);
+        display: grid;
+        place-items: center;
+        color: #f5efe0;
+        transition:
+          background 0.25s,
+          color 0.25s,
+          border-color 0.25s,
+          transform 0.25s;
+      }
+      .vx-soc-ic a:hover {
+        background: #c9a45c;
+        color: #111;
+        border-color: #c9a45c;
+        transform: translateY(-4px);
+      }
+      .vx-foot-note {
+        grid-column: 1 / -1;
+        padding-top: 1.5rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 0.5rem;
+        font-size: 0.85rem;
+        color: rgba(255, 255, 255, 0.5);
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .rv {
+          opacity: 1 !important;
+          transform: none !important;
+          transition: none !important;
+        }
+        .vx-orb,
+        .vx-art .rot,
+        .vx-art .rot2,
+        .vx-marq-track,
+        .vx-marq i {
+          animation: none !important;
+        }
+        .vx-art .dr {
+          animation: none !important;
+          stroke-dashoffset: 0;
+        }
+        .vx-art .dot {
+          animation: none !important;
+          opacity: 1;
+        }
+        .vx-sig {
+          animation: none !important;
+          clip-path: none !important;
+        }
+        main h2.rv::after {
+          width: min(180px, 40%);
+          transition: none;
+        }
+      }
     </style>
   </head>
   <body class="bg-ink text-paper antialiased">
+    <div id="vxProg" aria-hidden="true"></div>
+
     <!-- NAV -->
     <header
       class="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-ink/80 backdrop-blur"
@@ -464,7 +969,14 @@
         class="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 lg:px-8"
         aria-label="Utama"
       >
-        <a href="#top" class="text-xl font-light tracking-[0.28em]">VICARIS</a>
+        <a href="#top" aria-label="Vicaris Advisory"
+          ><img
+            class="vx-logo-nav vx-sig"
+            src="assets/logo-vicaris-light.png"
+            alt="Vicaris Advisory"
+            width="114"
+            height="50"
+        /></a>
         <ul class="hidden items-center gap-8 text-sm text-white/70 lg:flex">
           <li><a class="hover:text-gold" href="#about">About</a></li>
           <li><a class="hover:text-gold" href="#method">Method</a></li>
@@ -516,6 +1028,54 @@
       <section
         class="relative flex min-h-screen items-end overflow-hidden px-5 pb-16 pt-32 lg:px-8"
       >
+        <div class="vx-orb a" aria-hidden="true"></div>
+        <div class="vx-orb b" aria-hidden="true"></div>
+        <svg class="vx-art" viewBox="0 0 600 600" aria-hidden="true">
+          <g class="rot">
+            <circle class="dr" cx="300" cy="300" r="285" pathLength="1" />
+            <circle
+              class="dr"
+              cx="300"
+              cy="300"
+              r="225"
+              pathLength="1"
+              style="animation-delay: 0.9s"
+            />
+            <circle
+              class="dr"
+              cx="300"
+              cy="300"
+              r="165"
+              pathLength="1"
+              style="animation-delay: 1.4s"
+            />
+            <circle class="dot" cx="585" cy="300" r="5" />
+            <circle class="dot" cx="141" cy="141" r="4" />
+          </g>
+          <g class="rot2">
+            <ellipse
+              class="dr"
+              cx="300"
+              cy="300"
+              rx="285"
+              ry="110"
+              pathLength="1"
+              transform="rotate(35 300 300)"
+              style="animation-delay: 0.6s"
+            />
+            <ellipse
+              class="dr"
+              cx="300"
+              cy="300"
+              rx="285"
+              ry="110"
+              pathLength="1"
+              transform="rotate(-35 300 300)"
+              style="animation-delay: 1.1s"
+            />
+            <circle class="dot" cx="300" cy="15" r="4" />
+          </g>
+        </svg>
         <div
           aria-hidden="true"
           class="pointer-events-none absolute -right-[8vw] top-[8vh] select-none text-[62vw] font-bold leading-none text-transparent lg:text-[42vw]"
@@ -527,7 +1087,10 @@
           <p class="mb-6 text-sm text-gold">
             Vicaris Advisory 2026 &middot; Bandung, Indonesia
           </p>
-          <h1 class="h-display text-[clamp(3.2rem,11vw,10rem)] font-bold">
+          <h1
+            id="heroTitle"
+            class="h-display text-[clamp(3.2rem,11vw,10rem)] font-bold"
+          >
             Structure first,<br /><span class="gold-text">scale later.</span>
           </h1>
           <p class="mt-8 max-w-xl text-lg leading-relaxed text-white/70">
@@ -549,6 +1112,10 @@
           </div>
         </div>
       </section>
+
+      <div class="vx-marq" aria-hidden="true">
+        <div class="vx-marq-track" id="marq"></div>
+      </div>
 
       <!-- ABOUT -->
       <section
@@ -641,23 +1208,68 @@
             </p>
             <dl class="mt-10 divide-y divide-ink/10 border-y border-ink/10">
               <div class="grid gap-1 py-4 sm:grid-cols-3">
-                <dt class="font-semibold">Merambah Rasa</dt>
+                <dt class="font-semibold">
+                  <a
+                    class="vx-ml"
+                    href="https://www.google.com/maps/search/?api=1&amp;query=Merambah+Rasa+Bandung"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >Merambah Rasa</a
+                  >
+                </dt>
                 <dd class="text-ink/70 sm:col-span-2">
                   Casual dining: brand positioning, menu storytelling,
                   pre-opening control, dashboard support.
+                  <a
+                    class="vx-gm"
+                    href="https://www.google.com/maps/search/?api=1&amp;query=Merambah+Rasa+Bandung"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >Google Maps &nearr;</a
+                  >
                 </dd>
               </div>
               <div class="grid gap-1 py-4 sm:grid-cols-3">
-                <dt class="font-semibold">Sangu Haneut</dt>
+                <dt class="font-semibold">
+                  <a
+                    class="vx-ml"
+                    href="https://www.google.com/maps/search/?api=1&amp;query=Sangu+Haneut+Bandung"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >Sangu Haneut</a
+                  >
+                </dt>
                 <dd class="text-ink/70 sm:col-span-2">
                   Semi-buffet Indonesian dining: service sequence, job
                   description standardization, buffet control.
+                  <a
+                    class="vx-gm"
+                    href="https://www.google.com/maps/search/?api=1&amp;query=Sangu+Haneut+Bandung"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >Google Maps &nearr;</a
+                  >
                 </dd>
               </div>
               <div class="grid gap-1 py-4 sm:grid-cols-3">
-                <dt class="font-semibold">Bakso Rancakendal</dt>
+                <dt class="font-semibold">
+                  <a
+                    class="vx-ml"
+                    href="https://www.google.com/maps/search/?api=1&amp;query=Bakso+Rancakendal+Bandung"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >Bakso Rancakendal</a
+                  >
+                </dt>
                 <dd class="text-ink/70 sm:col-span-2">
                   QSR &amp; micro tenant structure, SOP, training.
+                  <a
+                    class="vx-gm"
+                    href="https://www.google.com/maps/search/?api=1&amp;query=Bakso+Rancakendal+Bandung"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >Google Maps &nearr;</a
+                  >
                 </dd>
               </div>
               <div class="grid gap-1 py-4 sm:grid-cols-3">
@@ -679,28 +1291,43 @@
             </div>
             <div class="vx-ahg-row">
               <figure>
-                <img
-                  src="assets/clients/merambah-rasa.png"
-                  alt="Merambah Rasa"
-                  loading="lazy"
-                />
-                <figcaption>Merambah Rasa</figcaption>
+                <a
+                  href="https://www.google.com/maps/search/?api=1&amp;query=Merambah+Rasa+Bandung"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  ><img
+                    src="assets/clients/merambah-rasa.png"
+                    alt="Merambah Rasa"
+                    loading="lazy"
+                  />
+                  <figcaption>Merambah Rasa</figcaption></a
+                >
               </figure>
               <figure>
-                <img
-                  src="assets/clients/sangu-haneut.png"
-                  alt="Sangu Haneut"
-                  loading="lazy"
-                />
-                <figcaption>Sangu Haneut</figcaption>
+                <a
+                  href="https://www.google.com/maps/search/?api=1&amp;query=Sangu+Haneut+Bandung"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  ><img
+                    src="assets/clients/sangu-haneut.png"
+                    alt="Sangu Haneut"
+                    loading="lazy"
+                  />
+                  <figcaption>Sangu Haneut</figcaption></a
+                >
               </figure>
               <figure>
-                <img
-                  src="assets/clients/bakso-rancakendal.png"
-                  alt="Bakso Rancakendal"
-                  loading="lazy"
-                />
-                <figcaption>Bakso Rancakendal</figcaption>
+                <a
+                  href="https://www.google.com/maps/search/?api=1&amp;query=Bakso+Rancakendal+Bandung"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  ><img
+                    src="assets/clients/bakso-rancakendal.png"
+                    alt="Bakso Rancakendal"
+                    loading="lazy"
+                  />
+                  <figcaption>Bakso Rancakendal</figcaption></a
+                >
               </figure>
             </div>
             <p class="mt-6 text-lg font-medium text-white">
@@ -844,6 +1471,32 @@
                 <dd><a href="tel:0817201916">0817201916</a></dd>
               </div>
               <div>
+                <dt class="text-sm font-medium opacity-70">Social media</dt>
+                <dd class="vx-socials">
+                  <a
+                    class="vx-pill"
+                    href="https://www.instagram.com/vicaris.advisory/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    ><span data-ic="instagram"></span>Instagram</a
+                  >
+                  <a
+                    class="vx-pill"
+                    href="https://www.threads.com/@vicaris.advisory"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    ><span data-ic="threads"></span>Threads</a
+                  >
+                  <a
+                    class="vx-pill"
+                    href="https://www.linkedin.com/in/vicaris-advisory-74601a438/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    ><span data-ic="linkedin"></span>LinkedIn</a
+                  >
+                </dd>
+              </div>
+              <div>
                 <dt class="text-sm font-medium opacity-70">Address</dt>
                 <dd>Jl. Cimanuk No.35 Citarum, Kota Bandung</dd>
                 <dd>
@@ -874,7 +1527,7 @@
                     title="Lokasi Vicaris di Google Maps"
                     loading="lazy"
                     referrerpolicy="no-referrer-when-downgrade"
-                    src="https://www.google.com/maps?q=Jl.+Cimanuk+No.35+Citarum+Kota+Bandung&amp;output=embed"
+                    src="https://maps.google.com/maps?q=Jl.+Cimanuk+No.35+Citarum+Kota+Bandung&amp;z=16&amp;output=embed"
                   ></iframe>
                 </dd>
               </div>
@@ -962,20 +1615,95 @@
       </section>
     </main>
 
-    <footer class="px-5 py-10 text-sm text-white/50 lg:px-8">
-      <div
-        class="mx-auto flex max-w-7xl flex-col justify-between gap-3 sm:flex-row"
-      >
-        <span class="tracking-[0.28em] text-white">VICARIS</span>
-        <span
-          >Vicaris Advisory x PT Boga Doa Sejahtera &middot; Your Trusted Growth
-          Partner &middot; 2026</span
-        >
+    <footer class="vx-foot">
+      <div class="vx-foot-in">
+        <div>
+          <img
+            class="vx-foot-logo vx-sig late"
+            src="assets/logo-vicaris-light.png"
+            alt="Vicaris Advisory"
+            loading="lazy"
+          />
+          <p class="vx-foot-tag">Structure first, scale later.</p>
+        </div>
+        <div class="vx-soc-ic">
+          <a
+            href="https://www.instagram.com/vicaris.advisory/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Instagram Vicaris Advisory"
+            ><span data-ic="instagram"></span
+          ></a>
+          <a
+            href="https://www.threads.com/@vicaris.advisory"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Threads Vicaris Advisory"
+            ><span data-ic="threads"></span
+          ></a>
+          <a
+            href="https://www.linkedin.com/in/vicaris-advisory-74601a438/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn Vicaris Advisory"
+            ><span data-ic="linkedin"></span
+          ></a>
+        </div>
+        <div class="vx-foot-note">
+          <span
+            >Vicaris Advisory x PT Boga Doa Sejahtera &middot; Your Trusted
+            Growth Partner &middot; 2026</span
+          ><span>Bandung, Indonesia</span>
+        </div>
       </div>
     </footer>
 
     <script>
       const $ = (id) => document.getElementById(id);
+
+      // ===== Ikon =====
+      const P = {
+        compass:
+          '<circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>',
+        grid: '<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/>',
+        gauge: '<path d="m12 14 4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/>',
+        trend:
+          '<polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/>',
+        search: '<circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>',
+        pencil: '<path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/>',
+        users:
+          '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>',
+        chart:
+          '<line x1="12" x2="12" y1="20" y2="10"/><line x1="18" x2="18" y1="20" y2="4"/><line x1="6" x2="6" y1="20" y2="16"/>',
+        rocket:
+          '<path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/>',
+        link: '<path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>',
+        refresh:
+          '<path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/>',
+        utensils:
+          '<path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3zm0 0v7"/>',
+        building:
+          '<path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/>',
+        package:
+          '<path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/>',
+        cap: '<path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/>',
+        clipboard:
+          '<rect width="8" height="4" x="8" y="2" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="m9 14 2 2 4-4"/>',
+        megaphone:
+          '<path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/>',
+        monitor:
+          '<rect width="20" height="14" x="2" y="3" rx="2"/><line x1="8" x2="16" y1="21" y2="21"/><line x1="12" x2="12" y1="17" y2="21"/>',
+        activity: '<path d="M22 12h-4l-3 9L9 3l-3 9H2"/>',
+        pin: '<path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/>',
+        instagram:
+          '<rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>',
+        threads:
+          '<circle cx="12" cy="12" r="4"/><path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-4 8"/>',
+        linkedin:
+          '<path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/>',
+      };
+      const icon = (n) =>
+        `<svg class="vx-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${P[n] || ""}</svg>`;
 
       // Mobile menu
       const mb = $("menuBtn"),
@@ -1012,8 +1740,8 @@
         ],
       ]
         .map(
-          ([t, d]) =>
-            `<div class="bg-coal p-8 transition hover:bg-graphite"><h3 class="text-xl font-semibold text-gold">${t}</h3><p class="mt-4 leading-relaxed text-white/65">${d}</p></div>`,
+          ([t, d], i) =>
+            `<div class="vx-pos bg-coal p-8 hover:bg-graphite"><span class="vx-ibub">${icon(["compass", "grid", "gauge", "trend"][i])}</span><h3 class="text-xl font-semibold text-gold">${t}</h3><p class="mt-4 leading-relaxed text-white/65">${d}</p></div>`,
         )
         .join("");
 
@@ -1038,7 +1766,7 @@
       ]
         .map(
           ([t, d], i) =>
-            `<li class="border-t border-gold pt-6"><span class="gold-text text-6xl font-bold tracking-tighter">0${i + 1}</span><h3 class="mt-6 text-xl font-semibold">${t}</h3><p class="mt-3 leading-relaxed text-white/65">${d}</p></li>`,
+            `<li class="vx-step border-t border-gold pt-6"><div class="vx-sthead"><span class="gold-text text-6xl font-bold tracking-tighter">0${i + 1}</span><span class="vx-ibub">${icon(["search", "pencil", "users", "chart"][i])}</span></div><h3 class="mt-6 text-xl font-semibold">${t}</h3><p class="mt-3 leading-relaxed text-white/65">${d}</p></li>`,
         )
         .join("");
 
@@ -1124,7 +1852,7 @@
         .map(
           ([t, items], i) => `
 <details class="group border-b border-white/15" ${i === 0 ? "open" : ""}>
-  <summary class="flex items-center justify-between gap-6 py-6 text-xl font-medium hover:text-gold lg:text-2xl"><span>${t}</span><span class="plus text-3xl font-light text-gold" aria-hidden="true">+</span></summary>
+  <summary class="flex items-center justify-between gap-6 py-6 text-xl font-medium hover:text-gold lg:text-2xl"><span class="vx-sumt"><span class="vx-ibub sm">${icon(["search", "utensils", "building", "package", "cap", "clipboard", "megaphone", "monitor", "activity"][i])}</span>${t}</span><span class="plus text-3xl font-light text-gold" aria-hidden="true">+</span></summary>
   <ul class="grid gap-3 pb-8 text-white/65 sm:grid-cols-2">${items.map((x) => `<li class="flex gap-3"><span class="mt-2.5 h-1 w-4 shrink-0 bg-gold"></span>${x}</li>`).join("")}</ul>
 </details>`,
         )
@@ -1133,7 +1861,7 @@
       // Team
       const team = [
         [
-          "M. Aditya S.",
+          "Mochamad Aditya Nugraha",
           "Business & Finance Strategic Architect",
           "Business strategy, management advisory, and corporate direction.",
         ],
@@ -1198,7 +1926,7 @@
       ]
         .map(
           ([t, d], i) =>
-            `<div class="rounded-3xl border ${i === 1 ? "border-gold bg-gold/10" : "border-white/15"} p-8"><h3 class="text-2xl font-semibold">${t}</h3><p class="mt-4 leading-relaxed text-white/65">${d}</p></div>`,
+            `<div class="vx-eng rounded-3xl border ${i === 1 ? "border-gold bg-gold/10" : "border-white/15"} p-8"><span class="vx-ibub">${icon(["rocket", "link", "refresh"][i])}</span><h3 class="text-2xl font-semibold">${t}</h3><p class="mt-4 leading-relaxed text-white/65">${d}</p></div>`,
         )
         .join("");
 
@@ -1209,115 +1937,135 @@
           "Setup partner",
           "Grup hospitality multi-brand. Vicaris mendampingi setup dan manajemen lintas brand.",
           "ahg",
+          "Arunika Hospitality Group Bandung",
         ],
         [
           "Merambah Rasa",
           "Casual dining",
           "Brand casual dining di bawah Arunika Hospitality Group.",
           "merambah-rasa",
+          "Merambah Rasa Bandung",
         ],
         [
           "Sangu Haneut",
           "Semi-buffet",
           "Semi-buffet Indonesian dining di bawah Arunika Hospitality Group.",
           "sangu-haneut",
+          "Sangu Haneut Bandung",
         ],
         [
           "Bakso Rancakendal",
           "QSR & micro tenant",
           "Bakso berbahan daging sapi asli dengan struktur QSR dan micro tenant.",
           "bakso-rancakendal",
+          "Bakso Rancakendal Bandung",
         ],
         [
           "Le Nusa",
           "Bistronomie Indonésienne",
           "Bistro dengan sajian Indonesia modern.",
           "le-nusa",
+          "Le Nusa Bistronomie Indonesienne",
         ],
         [
           "Wangi Seruni",
           "Rumah makan",
           "Rumah makan dengan menu khas dan operasional multi-outlet.",
           "wangi-seruni",
+          "Rumah Makan Wangi Seruni Bandung",
         ],
         [
           "Ayam Penyet Rempah",
           "Ayam penyet",
           "Brand ayam penyet rempah, outlet Lodaya dan beberapa cabang.",
           "apr-lodaya",
+          "Ayam Penyet Rempah Lodaya Bandung",
         ],
         [
           "Minang Bersaudara",
           "Masakan Minang",
           "Rumah makan masakan Minang.",
           "minang-bersaudara",
+          "Minang Bersaudara",
         ],
         [
           "Nasi Goreng Nagih",
           "Nasi goreng",
           "Brand nasi goreng dengan konsep kuliner kasual.",
           "nasi-goreng-nagih",
+          "Nasi Goreng Nagih",
         ],
         [
           "Sam\u2019s Studios",
           "Project reference",
           "Referensi proyek yang pernah ditangani tim Vicaris.",
           "sams-studios",
+          "Sam's Studios",
         ],
         [
           "RANS Food",
           "Project reference",
           "Referensi proyek F&B yang pernah ditangani tim Vicaris.",
           "rans-food",
+          "RANS Food",
         ],
         [
           "Payakumbuah",
           "Masakan Padang",
           "Rumah makan masakan Padang.",
           "payakumbuah",
+          "Payakumbuah Masakan Padang",
         ],
         [
           "Mang Yana",
           "Sate maranggi & sop",
           "Sate maranggi dan sop dengan cita rasa khas.",
           "mang-yana",
+          "Sate Maranggi Mang Yana",
         ],
         [
           "Dailah",
           "Sajian Nusantara",
           "Brand dengan konsep sajian Nusantara.",
           "dailah",
+          "Dailah Sajian Nusantara",
         ],
         [
           "Akang Group",
           "Project reference",
           "Grup F&B yang menjadi referensi proyek tim Vicaris.",
           "akang-group",
+          "Akang Group",
         ],
         [
           "Sate Khas Abah",
           "Sate khas",
           "Brand sate khas dengan resep asli.",
           "sate-abah",
+          "Sate Khas Abah",
         ],
         [
           "Toko Bubur Di Bawah Pohon Rindang",
           "Bubur",
           "Toko bubur dengan konsep outlet dan central kitchen.",
           "tb-dpr",
+          "Toko Bubur Di Bawah Pohon Rindang Bandung",
         ],
       ];
       (function () {
         const track = $("clientTrack");
         if (!track) return;
         const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+        const mapUrl = (q) =>
+          "https://www.google.com/maps/search/?api=1&query=" +
+          encodeURIComponent(q);
         const card = (
-          [n, t, d, img],
+          [n, t, d, img, q],
           i,
           dup,
-        ) => `<article class="vx-card" style="--i:${Math.min(i, 8)}" ${dup ? 'aria-hidden="true"' : ""}>
+        ) => `<a class="vx-card" href="${mapUrl(q)}" target="_blank" rel="noopener noreferrer" draggable="false" style="--i:${Math.min(i, 8)}" ${dup ? 'aria-hidden="true" tabindex="-1"' : 'aria-label="' + n + ' di Google Maps (tab baru)"'}>
     <div class="vx-logo"><img src="assets/clients/${img}.png" alt="${dup ? "" : "Logo " + n}" loading="lazy" draggable="false" /></div>
-    <div class="vx-body"><p class="vx-tag">${t}</p><h3 class="vx-name">${n}</h3><p class="vx-desc">${d}</p></div></article>`;
+    <div class="vx-body"><p class="vx-tag">${t}</p><h3 class="vx-name">${n}</h3><p class="vx-desc">${d}</p><span class="vx-loc">${icon("pin")}Lihat di Google Maps</span></div></a>`;
         track.innerHTML =
           clients.map((c, i) => card(c, i, false)).join("") +
           clients.map((c, i) => card(c, i, true)).join("");
@@ -1356,24 +2104,34 @@
 
         // Drag dengan mouse (touch memakai scroll bawaan)
         let down = false,
+          cap = false,
+          pid = 0,
           sx = 0,
           sl = 0,
           moved = 0;
         track.addEventListener("pointerdown", (e) => {
-          if (e.pointerType !== "mouse") return;
+          if (e.pointerType !== "mouse" || e.button !== 0) return;
           down = true;
+          cap = false;
           moved = 0;
           sx = e.clientX;
           sl = track.scrollLeft;
-          track.classList.add("dragging");
-          track.setPointerCapture(e.pointerId);
+          pid = e.pointerId;
           pause(4000);
         });
         track.addEventListener("pointermove", (e) => {
           if (!down) return;
-          const dx = e.clientX - sx,
-            h = half();
+          const dx = e.clientX - sx;
           moved = Math.max(moved, Math.abs(dx));
+          if (!cap && moved > 6) {
+            cap = true;
+            track.classList.add("dragging");
+            try {
+              track.setPointerCapture(pid);
+            } catch (_) {}
+          }
+          if (!cap) return;
+          const h = half();
           let t = sl - dx;
           while (t < 0) {
             t += h;
@@ -1386,11 +2144,26 @@
         });
         const up = () => {
           down = false;
+          cap = false;
           track.classList.remove("dragging");
           pause();
         };
         track.addEventListener("pointerup", up);
         track.addEventListener("pointercancel", up);
+        window.addEventListener("pointerup", up);
+        track.addEventListener("dragstart", (e) => e.preventDefault());
+        // setelah menyeret, jangan buka link; klik biasa tetap membuka Google Maps
+        track.addEventListener(
+          "click",
+          (e) => {
+            if (moved > 6) {
+              e.preventDefault();
+              e.stopPropagation();
+            }
+            moved = 0;
+          },
+          true,
+        );
         track.addEventListener("mouseenter", () => (hover = true));
         track.addEventListener("mouseleave", () => (hover = false));
         track.addEventListener("focusin", () => (hover = true));
@@ -1499,6 +2272,130 @@
             "_blank",
             "noopener",
           );
+        });
+      })();
+
+      // ===== Hero: efek mengetik =====
+      (function () {
+        const h = $("heroTitle");
+        if (!h) return;
+        if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+        h.setAttribute("aria-label", h.textContent);
+        const wrap = (node) =>
+          [...node.childNodes].forEach((n) => {
+            if (n.nodeType === 3) {
+              const f = document.createDocumentFragment();
+              [...n.textContent].forEach((ch) => {
+                const sp = document.createElement("span");
+                sp.className = "tw";
+                sp.setAttribute("aria-hidden", "true");
+                sp.textContent = ch;
+                f.appendChild(sp);
+              });
+              n.replaceWith(f);
+            } else if (n.nodeType === 1 && n.tagName !== "BR") wrap(n);
+          });
+        wrap(h);
+        const chars = [...h.querySelectorAll(".tw")];
+        const gold = h.querySelector(".gold-text");
+        if (gold) gold.classList.add("shine");
+        const caret = document.createElement("span");
+        caret.className = "tw-caret";
+        caret.setAttribute("aria-hidden", "true");
+        let i = 0;
+        const place = () => {
+          const nxt = chars[i];
+          if (nxt) nxt.before(caret);
+          else h.appendChild(caret);
+        };
+        const type = () => {
+          if (i >= chars.length) {
+            if (gold) gold.classList.add("go");
+            setTimeout(() => {
+              caret.classList.add("out");
+              setTimeout(() => caret.remove(), 700);
+            }, 2600);
+            return;
+          }
+          const c = chars[i];
+          c.classList.add("on");
+          i++;
+          place();
+          const t = c.textContent;
+          setTimeout(
+            type,
+            t === "," ? 420 : t === " " ? 90 : 58 + Math.random() * 40,
+          );
+        };
+        place();
+        setTimeout(type, 700);
+      })();
+
+      // ===== Animasi: icon, marquee, reveal, progress =====
+      (function () {
+        document.querySelectorAll("[data-ic]").forEach((el) => {
+          el.innerHTML = icon(el.dataset.ic);
+        });
+        const mq = $("marq");
+        if (mq) {
+          const words = [
+            "Structure first",
+            "Scale later",
+            "Business setup",
+            "SOP & training",
+            "Operational control",
+            "Menu engineering",
+            "Growth partner",
+          ];
+          const group = words
+            .map(
+              (w, i) =>
+                `<span class="${i % 2 ? "f" : ""}">${w}</span><i>\u2726</i>`,
+            )
+            .join("");
+          mq.innerHTML = group + group;
+        }
+        const prog = $("vxProg");
+        const onScroll = () => {
+          const h = document.documentElement,
+            m = h.scrollHeight - h.clientHeight;
+          prog.style.transform =
+            "scaleX(" + (m > 0 ? h.scrollTop / m : 0) + ")";
+        };
+        addEventListener("scroll", onScroll, { passive: true });
+        onScroll();
+
+        const sig = document.querySelector(".vx-sig.late");
+        const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+        if (reduce || !("IntersectionObserver" in window)) return;
+        if (sig)
+          new IntersectionObserver(
+            (es, o) => {
+              if (es[0].isIntersecting) {
+                sig.classList.add("vis");
+                o.disconnect();
+              }
+            },
+            { threshold: 0.4 },
+          ).observe(sig);
+
+        const sel =
+          "main section h2, main section h2 + p, #about ul li, #positioning > div, #positioning + p, #steps li, #services-list details, #team-list article, #engage > div, #engage + p, #portfolio dl > div";
+        const io = new IntersectionObserver(
+          (es) =>
+            es.forEach((e) => {
+              if (e.isIntersecting) {
+                e.target.classList.add("vis");
+                io.unobserve(e.target);
+              }
+            }),
+          { threshold: 0.12, rootMargin: "0px 0px -6% 0px" },
+        );
+        document.querySelectorAll(sel).forEach((el) => {
+          const idx = [...el.parentElement.children].indexOf(el);
+          el.style.setProperty("--d", Math.min(idx, 6) * 90 + "ms");
+          el.classList.add("rv");
+          io.observe(el);
         });
       })();
     </script>
